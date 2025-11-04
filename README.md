@@ -6,7 +6,7 @@ A powerful AI-driven website builder that allows users to create modern, respons
 
 ## Live Preview
 
-Check out the live application at [ai-website-builder.vercel.app](https://ai-webste-builder.vercel.app)
+Check out the live application at [ai-website-builder.vercel.app](https://ai-webste-builder-live.vercel.app)
 
 ----
 
@@ -18,6 +18,7 @@ Check out the live application at [ai-website-builder.vercel.app](https://ai-web
 -   **Authentication**: [Clerk](https://clerk.com/) for secure user management
 -   **Image Management**: [ImageKit](https://imagekit.io/) for optimized image delivery
 -   **Database**: [Neon](https://neon.tech/) - Serverless Postgres database
+-   **AI Code Generation**: [Gemini](https://aistudio.google.com/app/api-keys) - Gemini 2.5 API for website generation
 -   **UI Components**: [shadcn/ui](https://ui.shadcn.com/) - Beautiful and customizable components
 
 ----
