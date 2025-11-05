@@ -112,6 +112,9 @@ Generate a COMPLETE, FULL-PAGE HTML code for the <body> section with the followi
    - Sticky top navigation
    - Classes: sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm dark:bg-gray-900/90
    - Logo + Menu Items + Mobile Toggle
+   - Add hamburger menu icon (<i class="fas fa-bars"></i>) for mobile. When clicked, it should toggle a navigation sheet smoothly
+   - Enable smooth scrolling to sections on link click
+   - Use scroll-behavior: smooth; or small JS script for navigation highlighting
 
 2. **Hero Section**
    - Large impactful section
