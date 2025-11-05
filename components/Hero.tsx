@@ -99,7 +99,7 @@ export default function Hero() {
     return (
         <div className="flex flex-col items-center justify-center h-[80vh] px-5 sm:p-0">
             {/* Header & Description */}
-            <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl text-center">
+            <h2 className="font-bold text-4xl text-primary md:text-5xl lg:text-6xl text-center">
                 What Should We Design?
             </h2>
             <p className="mt-2 text-muted-foreground text-center">
@@ -114,10 +114,10 @@ export default function Hero() {
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                 />
-                <div className="flex justify-between">
-                    <Button variant={"ghost"}>
+                <div className="flex justify-end">
+                    {/* <Button variant={"ghost"}>
                         <ImagePlus />
-                    </Button>
+                    </Button> */}
                     {!user ? (
                         <SignInButton
                             mode="modal"
