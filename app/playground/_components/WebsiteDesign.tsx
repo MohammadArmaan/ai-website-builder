@@ -19,6 +19,7 @@ function WebsiteDesign({ generatedCode }: Props) {
     const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
         null
     );
+    const [contentRendered, setContentRendered] = useState(false);
 
     const { projectId } = useParams();
     const params = useSearchParams();
@@ -82,11 +83,40 @@ function WebsiteDesign({ generatedCode }: Props) {
         setTimeout(() => setIsIframeReady(true), 500);
     }, []);
 
-    // Event listeners for selection
+    // Render new HTML when generatedCode changes
+    useEffect(() => {
+        if (!isIframeReady) return;
+
+        const iframe = iframeRef.current;
+        if (!iframe) return;
+        const doc = iframe.contentDocument;
+        if (!doc) return;
+
+        const root = doc.getElementById("root");
+        if (!root) return;
+
+        let cleanHTML = generatedCode?.trim() ?? "";
+        cleanHTML = cleanHTML.replace(/^```html\n?|```$/g, "").trim();
+
+        root.innerHTML = cleanHTML;
+
+        setTimeout(() => {
+            const aos = (iframe.contentWindow as any)?.AOS;
+            if (aos?.init) aos.init();
+
+            const lucide = (iframe.contentWindow as any)?.lucide;
+            if (lucide?.createIcons) lucide.createIcons();
+
+            // ✅ Signal that content is rendered and ready for event listeners
+            setContentRendered(prev => !prev);
+        }, 300);
+    }, [generatedCode, isIframeReady]);
+
+    // Event listeners for selection - now runs after content is rendered
     useEffect(() => {
         if (!isIframeReady || !iframeRef.current) return;
         const doc = iframeRef.current.contentDocument;
-        if (!doc || !doc.body) return; // ✅ Added doc.body check
+        if (!doc || !doc.body) return;
 
         let hoverEl: HTMLElement | null = null;
         let selectedEl: HTMLElement | null = null;
@@ -125,7 +155,6 @@ function WebsiteDesign({ generatedCode }: Props) {
             selectedEl.setAttribute("contenteditable", "true");
             selectedEl.focus();
 
-            // ✅ Update state so ElementSettingSection gets the element
             setSelectedElement(selectedEl);
         };
 
@@ -134,7 +163,7 @@ function WebsiteDesign({ generatedCode }: Props) {
                 selectedEl.style.outline = "";
                 selectedEl.removeAttribute("contenteditable");
                 selectedEl = null;
-                setSelectedElement(null); // ✅ clear state too
+                setSelectedElement(null);
             }
         };
 
@@ -149,33 +178,7 @@ function WebsiteDesign({ generatedCode }: Props) {
             doc.body.removeEventListener("click", handleClick);
             doc.removeEventListener("keydown", handleKeyDown);
         };
-    }, [isIframeReady]);
-
-    // Render new HTML when generatedCode changes
-    useEffect(() => {
-        if (!isIframeReady) return;
-
-        const iframe = iframeRef.current;
-        if (!iframe) return;
-        const doc = iframe.contentDocument;
-        if (!doc) return;
-
-        const root = doc.getElementById("root");
-        if (!root) return;
-
-        let cleanHTML = generatedCode?.trim() ?? "";
-        cleanHTML = cleanHTML.replace(/^```html\n?|```$/g, "").trim();
-
-        root.innerHTML = cleanHTML;
-
-        setTimeout(() => {
-            const aos = (iframe.contentWindow as any)?.AOS;
-            if (aos?.init) aos.init();
-
-            const lucide = (iframe.contentWindow as any)?.lucide;
-            if (lucide?.createIcons) lucide.createIcons();
-        }, 300);
-    }, [generatedCode, isIframeReady]);
+    }, [isIframeReady, contentRendered]); // ✅ Re-run when content changes
 
     useEffect(() => {
         onSaveData && onSaveCode();

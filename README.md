@@ -2,13 +2,10 @@
 
 A powerful AI-driven website builder that allows users to create modern, responsive websites through an intuitive interface. Built with cutting-edge technologies for optimal performance and developer experience.
 
-----
 
 ## Live Preview
 
 Check out the live application at [ai-website-builder.vercel.app](https://ai-webste-builder-live.vercel.app)
-
-----
 
 
 ## Tech Stack
@@ -21,7 +18,6 @@ Check out the live application at [ai-website-builder.vercel.app](https://ai-web
 -   **AI Code Generation**: [Gemini](https://aistudio.google.com/app/api-keys) - Gemini 2.5 API for website generation
 -   **UI Components**: [shadcn/ui](https://ui.shadcn.com/) - Beautiful and customizable components
 
-----
 
 ## Features
 
@@ -34,7 +30,6 @@ Check out the live application at [ai-website-builder.vercel.app](https://ai-web
 -   ⚡ Real-time preview updates
 -   🔄 Version history tracking
 
-----
 
 ## Project Structure
 
@@ -52,25 +47,20 @@ Check out the live application at [ai-website-builder.vercel.app](https://ai-web
 └── public/              # Static assets
 ```
 
-----
 
 ## Contributing
 
 We welcome contributions! Please feel free to submit a Pull Request.
 
-----
 
 ## Author
 
 **Mohammad Armaan** - Full Stack Developer  
 Portfolio: [mohammadarmaan.co.in](https://mohammadarmaan.co.in)
 
-----
-
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-----
 
